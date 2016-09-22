@@ -16,6 +16,7 @@ cat > send-stop-pattern.c << EOF
 #include <stdio_ext.h>
 #include <string.h>
 #include <curses.h>
+#include <unistd.h>
 
 #define COUNT 6000
 #define DELAY 1100
@@ -43,4 +44,5 @@ gcc -O2 send-stop-pattern.c -o send-stop-pattern -lcurses
 echo "Now reset or power cycle your Armada 38x board and then press enter"
 ./send-stop-pattern < $1 > $1
 echo "The board should be in serial downloader now. Sending the binary file "
+sleep 2
 sx $2 < $1 > $1
